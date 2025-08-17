@@ -1,0 +1,87 @@
+:root {
+  --uiPink: #df7bc6;
+  --uiPinkRGB:223,123,198;
+  --uiBrtPink: rgb(169, 6, 128);
+  --uiDkPink: #5e0f4f;
+  --uiLtGrey: #696568;
+  --uiDkGrey: #242328;
+  --uiBlueGrey: #2e2a42;
+  --uiWhitish: 222,222,222;
+  --uiDANGER: 135, 0, 0;
+  --uiDANGERclick: 135,29,20;
+  --uiYellow: 235, 223, 12;
+
+}
+
+body {
+  font-family: Aptos, sans-serif;
+  background-color: var(--uiDkGrey);
+  padding: 2rem;
+}
+
+h1 {
+  color: var(--uiPink);
+  text-align: center;
+}
+h2{ 
+  color: var(--uiPink);
+  text-align: center;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: var(--uiBlueGrey);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: var(--uiDkPink);
+  color: rgb(var(--uiWhitish));
+  font-weight: bold;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover:active{
+  background-color: var(--uiBrtPink);
+  transform:translateY(0.3rem);
+}
+
+button:hover {
+  background-color:rgba(var(--uiPinkRGB),.2);
+}
+
+.purgeButton { 
+  background-color: rgb(var(--uiDANGER)); 
+  color: rgb(var(--uiYellow)); 
+  border: 2px solid rgba(var(--uiDANGER), .4);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  
+}
+.purgeButton:hover{
+  background-color: rgba(var(--uiDANGER),.4);
+  border: 2px solid rgba(var(--uiYellow), .5);
+}
+.purgeButton:hover:active {
+  background-color: rgb(var(--uiDANGERclick));
+  transform:translateY(.3rem);
+}
