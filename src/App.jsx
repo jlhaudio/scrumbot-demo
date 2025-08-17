@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import StoryTracker from './StoryTracker'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css'  //this will be available for all .jsx in src 
   
 
 function App() {
@@ -11,6 +12,9 @@ function App() {
   const[today,setToday] = useState(""); 
   const[roadblocks, setRoadblocks]= useState("");
   const[entries, setEntries]= useState([]);
+  const [showStoryTracker, setShowStoryTracker] = useState(false);
+
+
 
 
 ///////////////////////////
@@ -69,64 +73,73 @@ const handlePurge = () => {
 //return
 
   return (
-    <div>
-      <h1>ScrumBot 🤖</h1>
-      <h2> A fun rudimentary demo </h2>
-        <center><i>It's scrum time!</i></center>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Who are you?
-          <input type="text" value={member} onChange={(e) => setMember(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          What did you do yesterday?
-          <input type="text" value={yesterday} onChange={(e) => setYesterday(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          What are you doing today?
-          <input type="text" value={today} onChange={(e) => setToday(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          List any roadblocks (leave blank if none):
-          <input type="text" value={roadblocks} onChange={(e) => setRoadblocks(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-  
+  <div>
+    <h1>
+      {showStoryTracker ? 'Story Tracker Bot 🤖': 'ScrumBot 🤖'} </h1>
+    <h2>A fun rudimentary demo</h2>
 
-      </form>
-
-      <h2>Today's TL;DR</h2>
-      {entries.map((entry, index) => (
-        <div key={index} className="entry">
-          <p><strong>Awesome Team Member:</strong> {entry.member}</p>
-          <p><strong>Yesterday:</strong> {entry.yesterday}</p>
-          <p><strong>Today:</strong> {entry.today}</p>
-          <p><strong>Roadblocks:</strong> {entry.roadblocks || "Wow! No roadblocks!"}</p>
-          
-          <hr/>
-        </div>
-              ))}
-            <p><strong>Total entries:               {entries.length} </strong></p>
-            <p><strong> Total Roadblocks: </strong>
-            {entries.filter(entry => entry.roadblocks.trim() !=="").length}
-          
-            
-            </p>
-                  <br></br><hr></hr>
-    {/*<!-- PURGE BUTTON --> */} 
-<div style={{textAlign: 'center'}}>
-    <button type="button" onClick={handlePurge} className="purgeButton"> 
-    PURGE ALL RECORDS 💾🗑️😱 </button>
-</div>
+    <div style={{ textAlign: 'center' }}>
+      <button onClick={() => setShowStoryTracker(!showStoryTracker)}>
+        {showStoryTracker ? '🤖 Switch to ScrumBot' : '📆 Switch to Story Tracker Bot'} {/* show scrumbot button if we are on story page bzw*/}
+      </button>
     </div>
-    
-  );
+
+
+    <hr />
+
+    {showStoryTracker ? (
+//<StoryTracker key={showStoryTracker ? 'tracker' : 'scrum'} /> //toggle
+      <StoryTracker />
+    ) : (
+      <>
+        <center><i>It's scrum time!</i></center>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Who are you?
+            <input type="text" value={member} onChange={(e) => setMember(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            What did you do yesterday?
+            <input type="text" value={yesterday} onChange={(e) => setYesterday(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            What are you doing today?
+            <input type="text" value={today} onChange={(e) => setToday(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            List any roadblocks (leave blank if none):
+            <input type="text" value={roadblocks} onChange={(e) => setRoadblocks(e.target.value)} />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+
+        <h2>Today's TL;DR</h2>
+        {entries.map((entry, index) => (
+          <div key={index} className="entry">
+            <p><strong>Awesome Team Member:</strong> {entry.member}</p>
+            <p><strong>Yesterday:</strong> {entry.yesterday}</p>
+            <p><strong>Today:</strong> {entry.today}</p>
+            <p><strong>Roadblocks:</strong> {entry.roadblocks || "Wow! No roadblocks!"}</p>
+            <hr />
+          </div>
+        ))}
+        <p><strong>Total entries: {entries.length}</strong></p>
+        <p><strong>Total Roadblocks:</strong> {entries.filter(entry => entry.roadblocks.trim() !== "").length}</p>
+        <br /><hr />
+        <div style={{ textAlign: 'center' }}>
+          <button type="button" onClick={handlePurge} className="purgeButton">
+            PURGE ALL RECORDS 💾🗑️😱
+          </button>
+        </div>
+      </>
+    )}
+  </div>
+);
 
 }
-
 
 export default App;

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "PD-001",
+    "title": "Add login screen",
+    "priority": "High",
+    "status": "In Progress",
+    "assignedTo": "Jaimie",
+    "sprint": "Sprint 1",
+    "tags": ["auth", "frontend"],
+    "description": "Implement login screen with form validation and error handling."
+  },
+  {
+    "id": "PD-002",
+    "title": "Connect to backend API",
+    "priority": "Medium",
+    "status": "Not Started",
+    "assignedTo": "Not Jaimie",
+    "sprint": "Sprint 2",
+    "tags": ["backend", "integration"],
+    "description": "Hook up frontend to backend."
+  }
+]
